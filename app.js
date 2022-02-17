@@ -118,7 +118,7 @@ app.post("/audio/upload", (req, res) => {
             });
         } else {
           res.send({
-            message: "Something went wrong while processing your request",
+            message: "Something went wrong while processing your request"
           });
         }
       }
