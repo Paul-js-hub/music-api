@@ -7,6 +7,7 @@ import multer from "multer";
 import cloudinary from "cloudinary";
 import Music from "./model/musicModel";
 
+
 dotenv.config();
 const app = express();
 
@@ -84,7 +85,6 @@ app.post("/audio/upload", (req, res) => {
     });
 
     const { path } = req.file; //file becomes available in req at this point
-
     const fName = req.file.originalname.split(".")[0];
     cloudinary.v2.uploader.upload(
       path,
@@ -98,6 +98,7 @@ app.post("/audio/upload", (req, res) => {
         if (audio) {
           const data = {
             musicUrl: audio.url,
+            title:fName
           };
 
           const music = new Music(data);
