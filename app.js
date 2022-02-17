@@ -7,7 +7,6 @@ import multer from "multer";
 import cloudinary from "cloudinary";
 import Music from "./model/musicModel";
 
-
 dotenv.config();
 const app = express();
 
@@ -21,20 +20,23 @@ app.get("/", (req, res) => {
   res.send("Welcome to music api");
 });
 
-app.get("/audio", async(req, res) =>{
+app.get("/audio", async (req, res) => {
   try {
     const music = await Music.find();
     return res.send(music);
   } catch (error) {
-    res.send(error)
+    res.send(error);
   }
-})
+});
 
-app.get("/music/:id", async(req, res) =>{
+app.get("/music/:id", async (req, res) => {
   const music = await Music.findById(req.params.id); // Looking up for the music
-    if (!music) res.status(404).send({message:'The music with that particular ID not found.'}); ////If it does not exist return Not Found 
-    res.send({message: 'Success', music});
-})
+  if (!music)
+    res
+      .status(404)
+      .send({ message: "The music with that particular ID not found." }); ////If it does not exist return Not Found
+  res.send({ message: "Success", music });
+});
 
 app.post("/audio/upload", (req, res) => {
   // Get the file name and extension with multer
@@ -98,7 +100,7 @@ app.post("/audio/upload", (req, res) => {
         if (audio) {
           const data = {
             musicUrl: audio.url,
-            title:fName
+            title: fName,
           };
 
           const music = new Music(data);
@@ -118,7 +120,7 @@ app.post("/audio/upload", (req, res) => {
             });
         } else {
           res.send({
-            message: "Something went wrong while processing your request"
+            message: "Something went wrong while processing your request",
           });
         }
       }
