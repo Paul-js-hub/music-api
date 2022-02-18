@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import multer from "multer";
 import cloudinary from "cloudinary";
+import { isEmpty } from 'lodash';
 import Music from "./model/musicModel";
 
 dotenv.config();
@@ -78,6 +79,8 @@ app.post("/audio/upload", (req, res) => {
     if (err) {
       return res.send(err);
     }
+
+    if (isEmpty(req.file)) return res.status(400).send('EROOR! No file submitted.');
 
     // SEND FILE TO CLOUDINARY
     cloudinary.config({
