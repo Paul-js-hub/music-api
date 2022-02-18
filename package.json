@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec npx babel-node server.js"
+    "start": "nodemon --exec npx babel-node app.js"
   },
   "keywords": [],
   "author": "",

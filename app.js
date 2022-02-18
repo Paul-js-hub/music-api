@@ -10,6 +10,7 @@ import Music from "./model/musicModel";
 
 dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 8080;
 
 dbConnection();
 
@@ -131,4 +132,4 @@ app.post("/audio/upload", (req, res) => {
   });
 });
 
-export default app;
+app.listen(PORT, () => console.log(`App is listening to port ${PORT}`))
